@@ -9,6 +9,7 @@ defmodule TakeMeThereWeb.Router do
     pipe_through :api
 
     get "/health", HealthController, :status
+    post "/auth/register", AuthController, :register
   end
 
   # Enables LiveDashboard only for development
