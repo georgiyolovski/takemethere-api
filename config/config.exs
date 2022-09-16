@@ -11,6 +11,16 @@ config :takemethere,
   namespace: TakeMeThere,
   ecto_repos: [TakeMeThere.Repo]
 
+# Configure your database
+config :takemethere, TakeMeThere.Repo,
+  username: System.get_env("DB_USER"),
+  password: System.get_env("DB_PASS"),
+  hostname: System.get_env("DB_HOST"),
+  database: System.get_env("DB_NAME"),
+  stacktrace: true,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
 # Configures the endpoint
 config :takemethere, TakeMeThereWeb.Endpoint,
   url: [host: "localhost"],
