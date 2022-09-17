@@ -2,7 +2,15 @@ defmodule TakeMeThere.Locations.Country do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @fields [:name, :short_code, :long_code, :phone_code, :region, :sub_region, :intermediate_region]
+  @fields [
+    :name,
+    :short_code,
+    :long_code,
+    :phone_code,
+    :region,
+    :sub_region,
+    :intermediate_region
+  ]
 
   @type t() :: %__MODULE__{}
 

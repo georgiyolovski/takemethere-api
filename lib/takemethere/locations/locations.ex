@@ -4,7 +4,7 @@ defmodule TakeMeThere.Locations do
   alias TakeMeThere.Repo
 
   def get(params) do
-    (from l in Location)
+    from(l in Location)
     |> maybe_filter(:name, params)
     |> order_by(desc: fragment("continent = 'EU'"))
     |> limit(5)
@@ -14,6 +14,7 @@ defmodule TakeMeThere.Locations do
 
   defp maybe_filter(query, :name, %{"name" => name}) do
     search_string = "%#{name}%"
+
     query
     |> where([l], ilike(l.name, ^search_string))
   end

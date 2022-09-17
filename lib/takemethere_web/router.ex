@@ -23,6 +23,8 @@ defmodule TakeMeThereWeb.Router do
     pipe_through [:api, :authenticated]
 
     get "/locations", LocationsController, :list
+    post "/search_sessions", SearchSessionsController, :create
+    get "/search_sessions/:id", SearchSessionsController, :get
   end
 
   # Enables LiveDashboard only for development

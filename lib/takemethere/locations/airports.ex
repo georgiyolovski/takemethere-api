@@ -2,7 +2,16 @@ defmodule TakeMeThere.Locations.Airport do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @fields [:name, :location, :latitude_deg, :longitude_deg, :continent, :country, :region, :iata_code]
+  @fields [
+    :name,
+    :location,
+    :latitude_deg,
+    :longitude_deg,
+    :continent,
+    :country,
+    :region,
+    :iata_code
+  ]
 
   @type t() :: %__MODULE__{}
 

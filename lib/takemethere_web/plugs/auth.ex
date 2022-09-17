@@ -10,13 +10,12 @@ defmodule TakeMeThereWeb.Plugs.Auth do
       |> Enum.find(fn {name, _} -> name == "authorization" end)
 
     with {_, token} <- auth_header,
-      {:ok, user} <- Token.verify_and_validate(token) do
-        conn
-        |> assign(:user, user)
-
-      else
-        _ ->
-          send_error(conn)
+         {:ok, user} <- Token.verify_and_validate(token) do
+      conn
+      |> assign(:user, user)
+    else
+      _ ->
+        send_error(conn)
     end
   end
 

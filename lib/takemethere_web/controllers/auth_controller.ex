@@ -4,7 +4,6 @@ defmodule TakeMeThereWeb.AuthController do
   alias TakeMeThere.Auth.Token
   alias TakeMeThere.Users
 
-  @spec register(any, map) :: nil
   def register(conn, user) do
     created =
       user

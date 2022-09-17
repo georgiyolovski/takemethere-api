@@ -125,3 +125,66 @@ A REST API for the TakeMeThere app, written in Elixir and Phoenix
     }
 ]
 ```
+
+### Create Search Session
+
+#### Headers
+`Authorization: {token here}`
+
+*POST* `/api/search_sessions`
+
+```json
+{
+  "location_id" : 1,
+  "start_date" : "2020-09-01",
+  "end_date" : "2020-09-01",
+  "adults" : 1,
+  "children" : 2,
+  "activities" : ["beach", "shopping"]
+}
+```
+
+#### Response
+
+```json
+{
+  "activities": [
+      "beach",
+      "shopping"
+  ],
+  "adults": 1,
+  "children": 2,
+  "end_date": "2020-09-01",
+  "id": 7,
+  "location_id": 1,
+  "start_date": "2020-09-01",
+  "user_id": 4
+}
+```
+
+### Get Serach Sessin
+
+#### Headers
+`Authorization: {token here}`
+
+*GET* `/api/search_sessions/1`
+
+### Response
+
+```json
+{
+  "activities": [
+      "beach",
+      "shopping"
+  ],
+  "adults": 1,
+  "children": 2,
+  "end_date": "2020-09-01",
+  "id": 7,
+  "location": {
+      "id": 770,
+      "name": "Corozal"
+  },
+  "start_date": "2020-09-01"
+}
+```
