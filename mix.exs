@@ -44,7 +44,8 @@ defmodule TakeMeThere.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:bcrypt_elixir, "~> 1.0"},
       {:joken, "~> 2.0"},
-      {:comeonin, "~> 4.0"}
+      {:comeonin, "~> 4.0"},
+      {:cors_plug, "~> 3.0"}
     ]
   end
 

@@ -2,6 +2,7 @@ defmodule TakeMeThereWeb.Router do
   use TakeMeThereWeb, :router
 
   pipeline :api do
+    plug CORSPlug
     plug :accepts, ["json"]
   end
 
