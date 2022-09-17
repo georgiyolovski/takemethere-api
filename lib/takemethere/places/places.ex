@@ -1,8 +1,6 @@
 defmodule TakeMeThere.Places do
-  import Ecto.Query
   alias TakeMeThere.SearchSessions.SearchSession
   alias TakeMeThere.Locations.Location
-  alias TakeMeThere.Locations.Airport
   alias TakeMeThere.Repo
 
   def get_places(session_id) do
@@ -11,7 +9,15 @@ defmodule TakeMeThere.Places do
 
     %{name: location_name, country: country} = Repo.get!(Location, location_id)
     activities = activities_list |> String.split(",")
-    get_places_by_category(List.first(activities), location_name, country)
+
+    places_to_return = 10
+    places_per_category = ceil(places_to_return / Enum.count(activities))
+
+    activities
+    |> Task.async_stream(fn activity -> get_places_by_category(activity, location_name, country) end)
+    |> Enum.map(fn {:ok, places} -> places |> Enum.take(places_per_category) end)
+    |> Enum.flat_map(fn place -> place end)
+    |> Enum.sort_by(fn %{"rating" => rating} -> rating end, :desc)
   end
 
   defp get_places_by_category(category, location_name, country) do
@@ -23,6 +29,7 @@ defmodule TakeMeThere.Places do
     %{"results" => results} = Jason.decode!(body)
 
     results
+    |> Stream.filter(fn place -> Map.has_key?(place, "photos") end)
     |> Enum.map(fn %{
                      "formatted_address" => address,
                      "geometry" => %{"location" => location},
@@ -57,8 +64,8 @@ defmodule TakeMeThere.Places do
     url
   end
 
-  defp build_place_search_query("beach", location, country),
-    do: "beaches in #{location},#{country}"
+  defp build_place_search_query(activity, location, country),
+    do: "#{activity} in #{location},#{country}"
 
   defp api_config() do
     %{
