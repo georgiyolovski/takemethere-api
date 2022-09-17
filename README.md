@@ -86,3 +86,42 @@ A REST API for the TakeMeThere app, written in Elixir and Phoenix
   "token": "eyJhbGciOiJIUzUxMiIsI..."
 }
 ```
+
+### Search Locations
+
+#### Headers
+`Authorization: {token here}`
+
+*GET* `/api/locations`
+*GET* `/api/locations=name=rome`
+
+#### Response
+```json
+[
+    {
+        "country": "Italy",
+        "id": 2138,
+        "name": "Rome"
+    },
+    {
+        "country": "Russian Federation",
+        "id": 2774,
+        "name": "Kostroma"
+    },
+    {
+        "country": "Norway",
+        "id": 2509,
+        "name": "Tromsø"
+    },
+    {
+        "country": "Australia",
+        "id": 283,
+        "name": "Roma"
+    },
+    {
+        "country": "Dominican Republic",
+        "id": 2182,
+        "name": "La Romana"
+    }
+]
+```

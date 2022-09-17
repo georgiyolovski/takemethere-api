@@ -5,6 +5,10 @@ defmodule TakeMeThereWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :authenticated do
+    plug(TakeMeThereWeb.Plugs.Auth)
+  end
+
   scope "/api", TakeMeThereWeb do
     pipe_through :api
 
@@ -13,6 +17,12 @@ defmodule TakeMeThereWeb.Router do
     post "/auth/login", AuthController, :login
     post "/auth/register/google", AuthController, :google_register
     post "/auth/login/google", AuthController, :google_login
+  end
+
+  scope "/api", TakeMeThereWeb do
+    pipe_through [:api, :authenticated]
+
+    get "/locations", LocationsController, :list
   end
 
   # Enables LiveDashboard only for development
