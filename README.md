@@ -188,3 +188,78 @@ A REST API for the TakeMeThere app, written in Elixir and Phoenix
   "start_date": "2020-09-01"
 }
 ```
+
+### Get Flight Tickets
+
+#### Headers
+`Authorization: {token here}`
+
+*GET* `/api/search_sessions/1/flights`
+
+#### Response
+```json
+{
+    "outgoing": [
+        {
+            "legs": [
+                {
+                    "arrival_time": "2022-10-10T20:55:00+02:00",
+                    "carrier": {
+                        "logo": "https://static.tacdn.com/img2/flights/airlines/logos/100x100/WizzAir.png",
+                        "name": "Wizzair"
+                    },
+                    "departure": "SOF",
+                    "departure_time": "2022-10-10T19:55:00+03:00",
+                    "destination": "CIA"
+                }
+            ],
+            "notes": [],
+            "price": {
+                "amount": 20.0,
+                "id": "SkyScanner|1|6",
+                "impressionId": "2f5885fb-15df-4dcd-afe6-736c12905c8a.20611"
+            },
+            "search_hash": "1dd5f2da5692c4ad4b42926eb93b6da9",
+            "search_id": "46f9a40f-8b98-4165-afe2-bc51308d3553.342"
+        }
+    ],
+    "return": [
+        {
+            "legs": [
+                {
+                    "arrival_time": "2022-10-13T14:20:00+03:00",
+                    "carrier": {
+                        "logo": "https://static.tacdn.com/img2/flights/airlines/logos/100x100/RyanAir.png",
+                        "name": "Ryanair"
+                    },
+                    "departure": "CIA",
+                    "departure_time": "2022-10-13T11:40:00+02:00",
+                    "destination": "SOF"
+                }
+            ],
+            "notes": [],
+            "price": {
+                "amount": 19.0,
+                "id": "Kayak|1|46",
+                "impressionId": "4556d01d-dee2-416e-ba58-845f7d481127.19713"
+            },
+            "search_hash": "54a8146d3bbed9739be7733634523cfc",
+            "search_id": "ee77a3e7-57d6-4a64-953e-9c760b40503f.357"
+        }
+    ]
+}
+```
+
+### Get Booking URL
+
+#### Headers
+`Authorization: {token here}`
+
+*GET* `/api/booking_url?search_hash=1dd5f2da5692c4ad4b42926eb93b6da9&destination=CIA&id=SkyScanner|1|6&origin=OFS&search_id=46f9a40f-8b98-4165-afe2-bc51308d3553.342&impression_id=2f5885fb-15df-4dcd-afe6-736c12905c8a.20614`
+
+#### Response
+```json
+{
+    "booking_url": "https://partners.api.skyscanner.net/apiservices/deeplink/v2?_cje=IYEnrlvRxa%2BQ6sTHxjCdCZ2XF%2FNaPsaII5YlCXZ7GYDeLh0tmqWV4z4Fzk2IM6h1&url=https%3A%2F%2Fwww.skyscanner.net%2Ftransport_deeplink%2F4.0%2FRU%2Fru-RU%2FRUB%2Fwizz%2F1%2F16440.10525.2022-10-10%2Fair%2Fairli%2Fflights%3Fitinerary%3Dflight%7C-31669%7C4315%7C16440%7C2022-10-10T19%3A55%7C10525%7C2022-10-10T20%3A55%7C120%7C-%7C-%7CBasic%26carriers%3D-31669%26operators%3D-31669%26passengers%3D1%26channel%3Ddataapi%26cabin_class%3Deconomy%26facilitated%3Dfalse%26fps_session_id%3D2ee9212d-9f55-497c-a27d-7350c26ab3da%26ticket_price%3D1211.16%26is_npt%3Dfalse%26is_multipart%3Dfalse%26client_id%3Dskyscanner_b2b%26request_id%3D8cf929c9-7b6e-4ba6-bf6b-ff605f006721%26q_ids%3DH4sIAAAAAAAAAOOS5mIpz6yqEmLh2NHAKMXMMTdIoeFg7yw2IyYFRgDGoSHcHQAAAA%7C7404238036994044409%7C1%26q_sources%3DJACQUARD%26commercial_filters%3Dfalse%26q_datetime_utc%3D2022-09-17T13%3A24%3A00%26pqid%3Dfalse&auid=090b931b-1688-453e-bb97-95f507f08cc4"
+}
+```

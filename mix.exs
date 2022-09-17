@@ -20,7 +20,7 @@ defmodule TakeMeThere.MixProject do
   def application do
     [
       mod: {TakeMeThere.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :httpoison]
     ]
   end
 
@@ -45,7 +45,8 @@ defmodule TakeMeThere.MixProject do
       {:bcrypt_elixir, "~> 1.0"},
       {:joken, "~> 2.0"},
       {:comeonin, "~> 4.0"},
-      {:cors_plug, "~> 3.0"}
+      {:cors_plug, "~> 3.0"},
+      {:httpoison, "~> 1.8"}
     ]
   end
 

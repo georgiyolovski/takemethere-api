@@ -9,7 +9,8 @@ import Config
 
 config :takemethere,
   namespace: TakeMeThere,
-  ecto_repos: [TakeMeThere.Repo]
+  ecto_repos: [TakeMeThere.Repo],
+  rapidapi_key: System.get_env("RAPIDAPI_KEY")
 
 # Configure your database
 config :takemethere, TakeMeThere.Repo,

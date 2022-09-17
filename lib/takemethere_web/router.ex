@@ -25,6 +25,8 @@ defmodule TakeMeThereWeb.Router do
     get "/locations", LocationsController, :list
     post "/search_sessions", SearchSessionsController, :create
     get "/search_sessions/:id", SearchSessionsController, :get
+    get "/search_sessions/:search_session/flights", FlightsController, :get_prices
+    get "/booking_url", FlightsController, :get_booking_url
   end
 
   # Enables LiveDashboard only for development
