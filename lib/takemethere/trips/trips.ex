@@ -10,6 +10,7 @@ defmodule TakeMeThere.Trips do
     |> where([t], t.user_id == ^user_id)
     |> join(:inner, [t], l in Location, on: t.location_id == l.id)
     |> select([t, l], %{
+      "id" => t.id,
       "location" => %{
         "name" => l.name,
         "country" => l.country
@@ -34,6 +35,7 @@ defmodule TakeMeThere.Trips do
     |> where([t], t.id == ^trip_id)
     |> join(:inner, [t], l in Location, on: t.location_id == l.id)
     |> select([t, l], %{
+      "id" => t.id,
       "location" => %{
         "name" => l.name,
         "country" => l.country
