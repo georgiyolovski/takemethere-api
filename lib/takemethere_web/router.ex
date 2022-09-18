@@ -27,6 +27,7 @@ defmodule TakeMeThereWeb.Router do
     get "/search_sessions/:id", SearchSessionsController, :get
     get "/search_sessions/:search_session/flights", FlightsController, :get_prices
     get "/search_sessions/:search_session/places", PlacesController, :get_places
+    get "/search_sessions/:search_session/hotels", HotelsController, :get_hotels
     get "/booking_url", FlightsController, :get_booking_url
     get "/trips", TripsController, :get
     post "/trips", TripsController, :create
