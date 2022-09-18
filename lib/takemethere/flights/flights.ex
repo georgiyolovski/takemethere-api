@@ -81,7 +81,7 @@ defmodule TakeMeThere.Flights do
 
   defp poll_session(sid, _previous_result, false) do
     IO.inspect("Polling #{sid} for results")
-    :timer.sleep(1000)
+    :timer.sleep(2000)
 
     params = [
       sid: sid,
