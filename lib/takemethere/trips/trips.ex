@@ -29,6 +29,31 @@ defmodule TakeMeThere.Trips do
     |> Enum.map(&add_title/1)
   end
 
+  def get_trip(trip_id) do
+    from(t in Trip)
+    |> where([t], t.id == ^trip_id)
+    |> join(:inner, [t], l in Location, on: t.location_id == l.id)
+    |> select([t, l], %{
+      "location" => %{
+        "name" => l.name,
+        "country" => l.country
+      },
+      "start_date" => t.start_date,
+      "end_date" => t.end_date,
+      "adults" => t.adults,
+      "children" => t.children,
+      "activities" => t.activities,
+      "tickets" => t.tickets,
+      "hotels" => t.hotels,
+      "places" => t.places,
+      "cover_url" => t.cover_url
+    })
+    |> Repo.all()
+    |> Enum.map(&map_activities/1)
+    |> Enum.map(&add_title/1)
+    |> List.first()
+  end
+
   def create(%{
         "user_id" => user_id,
         "search_session_id" => session_id,

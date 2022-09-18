@@ -57,6 +57,25 @@ defmodule TakeMeThere.Hotels do
     |> Enum.sort_by(fn %{"rating" => rating} -> rating end, :desc)
   end
 
+  def get_booking_url(%{"name" => name, "start_date" => start_date, "end_date" => end_date, "adults" => adults}) do
+    base_url = "https://www.hotels.com/Hotel-Search?"
+    params = %{
+      "d1" => start_date,
+      "d2" => start_date,
+      "startDate" => start_date,
+      "endDate" => end_date,
+      "destination" => name,
+      "hotels-destination" => name,
+      "directFlights" => "false",
+      "partialStay" => "false",
+      "sort" => "RECOMMENDED",
+      "adults" => adults
+    }
+    %{
+      "url" => "#{base_url}?#{URI.encode_query(params)}"
+    }
+  end
+
   defp get_address(%{"fullAddress" => address}), do: address
 
   defp get_address(%{"countryName" => country, "locality" => locality, "streetAddress" => address}),

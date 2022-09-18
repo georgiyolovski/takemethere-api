@@ -9,6 +9,13 @@ defmodule TakeMeThereWeb.TripsController do
     |> json(trips)
   end
 
+  def get_trip(conn, %{"id" => trip_id}) do
+    trip = Trips.get_trip(trip_id)
+
+    conn
+    |> json(trip)
+  end
+
   def create(%{assigns: %{user: %{"id" => id}}} = conn, params) do
     created =
       params
