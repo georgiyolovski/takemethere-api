@@ -10,7 +10,8 @@ import Config
 config :takemethere,
   namespace: TakeMeThere,
   ecto_repos: [TakeMeThere.Repo],
-  rapidapi_key: System.get_env("RAPIDAPI_KEY")
+  rapidapi_key: System.get_env("RAPIDAPI_KEY"),
+  google_maps_key: System.get_env("GOOGLE_MAPS_KEY")
 
 # Configure your database
 config :takemethere, TakeMeThere.Repo,

@@ -162,7 +162,7 @@ A REST API for the TakeMeThere app, written in Elixir and Phoenix
 }
 ```
 
-### Get Serach Sessin
+### Get Search Session
 
 #### Headers
 `Authorization: {token here}`
@@ -262,4 +262,49 @@ A REST API for the TakeMeThere app, written in Elixir and Phoenix
 {
     "booking_url": "https://partners.api.skyscanner.net/apiservices/deeplink/v2?_cje=IYEnrlvRxa%2BQ6sTHxjCdCZ2XF%2FNaPsaII5YlCXZ7GYDeLh0tmqWV4z4Fzk2IM6h1&url=https%3A%2F%2Fwww.skyscanner.net%2Ftransport_deeplink%2F4.0%2FRU%2Fru-RU%2FRUB%2Fwizz%2F1%2F16440.10525.2022-10-10%2Fair%2Fairli%2Fflights%3Fitinerary%3Dflight%7C-31669%7C4315%7C16440%7C2022-10-10T19%3A55%7C10525%7C2022-10-10T20%3A55%7C120%7C-%7C-%7CBasic%26carriers%3D-31669%26operators%3D-31669%26passengers%3D1%26channel%3Ddataapi%26cabin_class%3Deconomy%26facilitated%3Dfalse%26fps_session_id%3D2ee9212d-9f55-497c-a27d-7350c26ab3da%26ticket_price%3D1211.16%26is_npt%3Dfalse%26is_multipart%3Dfalse%26client_id%3Dskyscanner_b2b%26request_id%3D8cf929c9-7b6e-4ba6-bf6b-ff605f006721%26q_ids%3DH4sIAAAAAAAAAOOS5mIpz6yqEmLh2NHAKMXMMTdIoeFg7yw2IyYFRgDGoSHcHQAAAA%7C7404238036994044409%7C1%26q_sources%3DJACQUARD%26commercial_filters%3Dfalse%26q_datetime_utc%3D2022-09-17T13%3A24%3A00%26pqid%3Dfalse&auid=090b931b-1688-453e-bb97-95f507f08cc4"
 }
+```
+
+### Get Tourist Attractions
+
+#### Headers
+`Authorization: {token here}`
+
+*GET* `/api/search_sessions/1/places`
+
+#### Response
+```json
+[
+    {
+        "id": "ChIJz9cDEQ2jpBIRyPyyZbHXCkA",
+        "address": "Barceloneta Beach, Spain",
+        "image_url": "https://lh3.googleusercontent.com/places/AM5lPC_R18c11eDCnK_ljRU4tJRQmMW3jK5nGoVZvtcMAPAPU95eYGnhVgibOJVq8VzMKqSldM9Leb6HSf0kt8NOyvD2En2h_spGMw=s1600-w700",
+        "location": {
+            "lat": 41.3783713,
+            "lng": 2.1924685
+        },
+        "name": "Barceloneta Beach",
+        "rating": 4.3,
+        "tags": [
+            "natural_feature",
+            "establishment"
+        ]
+    },
+    {
+        "id": "ChIJz9cDEQ2jpBIRyPyyZbHXCkA",
+        "address": "Pl. de Catalunya, 1, 4, 08002 Barcelona, Spain",
+        "image_url": "https://lh3.googleusercontent.com/places/AM5lPC_rza_XebgjA5T3hbkK6dunULHq8D6FcausyvvL56bHyuWsxcYjhfbzyvGdtVWrwvrlT8hGHJ_DAFNk8OzvJj5JsrXnqyOf2g=s1600-w700",
+        "location": {
+            "lat": 41.3858752,
+            "lng": 2.1691163
+        },
+        "name": "Centre Comercial El Triangle",
+        "rating": 4,
+        "tags": [
+            "shopping_mall",
+            "point_of_interest",
+            "store",
+            "establishment"
+        ]
+    }
+]
 ```
