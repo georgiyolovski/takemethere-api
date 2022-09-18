@@ -17,6 +17,7 @@ defmodule TakeMeThere.Places do
     |> Task.async_stream(fn activity -> get_places_by_category(activity, location_name, country) end)
     |> Enum.map(fn {:ok, places} -> places |> Enum.take(places_per_category) end)
     |> Enum.flat_map(fn place -> place end)
+    |> Enum.uniq_by(fn %{"id" => id} -> id end)
     |> Enum.sort_by(fn %{"rating" => rating} -> rating end, :desc)
   end
 
@@ -31,6 +32,7 @@ defmodule TakeMeThere.Places do
     results
     |> Stream.filter(fn place -> Map.has_key?(place, "photos") end)
     |> Enum.map(fn %{
+                     "place_id" => id,
                      "formatted_address" => address,
                      "geometry" => %{"location" => location},
                      "name" => name,
@@ -39,6 +41,7 @@ defmodule TakeMeThere.Places do
                      "types" => types
                    } ->
       %{
+        "id" => id,
         "name" => name,
         "address" => address,
         "location" => location,

@@ -275,6 +275,7 @@ A REST API for the TakeMeThere app, written in Elixir and Phoenix
 ```json
 [
     {
+        "id": "ChIJz9cDEQ2jpBIRyPyyZbHXCkA",
         "address": "Barceloneta Beach, Spain",
         "image_url": "https://lh3.googleusercontent.com/places/AM5lPC_R18c11eDCnK_ljRU4tJRQmMW3jK5nGoVZvtcMAPAPU95eYGnhVgibOJVq8VzMKqSldM9Leb6HSf0kt8NOyvD2En2h_spGMw=s1600-w700",
         "location": {
@@ -289,6 +290,7 @@ A REST API for the TakeMeThere app, written in Elixir and Phoenix
         ]
     },
     {
+        "id": "ChIJz9cDEQ2jpBIRyPyyZbHXCkA",
         "address": "Pl. de Catalunya, 1, 4, 08002 Barcelona, Spain",
         "image_url": "https://lh3.googleusercontent.com/places/AM5lPC_rza_XebgjA5T3hbkK6dunULHq8D6FcausyvvL56bHyuWsxcYjhfbzyvGdtVWrwvrlT8hGHJ_DAFNk8OzvJj5JsrXnqyOf2g=s1600-w700",
         "location": {
