@@ -14,7 +14,9 @@ defmodule TakeMeThere.Places do
     places_per_category = ceil(places_to_return / Enum.count(activities))
 
     activities
-    |> Task.async_stream(fn activity -> get_places_by_category(activity, location_name, country) end)
+    |> Task.async_stream(fn activity ->
+      get_places_by_category(activity, location_name, country)
+    end)
     |> Enum.map(fn {:ok, places} -> places |> Enum.take(places_per_category) end)
     |> Enum.flat_map(fn place -> place end)
     |> Enum.uniq_by(fn %{"id" => id} -> id end)
@@ -51,15 +53,19 @@ defmodule TakeMeThere.Places do
       }
     end)
     |> Enum.take(5)
-    |> Task.async_stream(fn place -> place |> Map.put_new("image_url", get_photo(place["photo_reference"])) end)
+    |> Task.async_stream(fn place ->
+      place |> Map.put_new("image_url", get_photo(place["photo_reference"]))
+    end)
     |> Enum.map(fn {:ok, place} -> place |> Map.delete("photo_reference") end)
   end
 
   defp get_photo(photo_reference) do
-    params = api_config().params ++ [
-      photo_reference: photo_reference,
-      maxwidth: 700
-    ]
+    params =
+      api_config().params ++
+        [
+          photo_reference: photo_reference,
+          maxwidth: 700
+        ]
 
     %{body: body} = HTTPoison.get!("#{api_config().url}/photo", [], params: params)
     image_url_pattern = ~r/HREF=\"(.+)\"/

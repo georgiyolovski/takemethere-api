@@ -100,11 +100,11 @@ defmodule TakeMeThere.Flights do
   defp poll_session(_sid, previous_result, true), do: previous_result
 
   defp map_search_result(%{
-    "carriers" => carriers,
-    "itineraries" => itineraries,
-    "summary" => %{"sh" => hash},
-    "search_params" => %{"sid" => sid}
-  }) do
+         "carriers" => carriers,
+         "itineraries" => itineraries,
+         "summary" => %{"sh" => hash},
+         "search_params" => %{"sid" => sid}
+       }) do
     carrier_map =
       carriers
       |> Map.new(fn %{"c" => key} = carrier -> {key, carrier} end)

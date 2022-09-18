@@ -28,6 +28,8 @@ defmodule TakeMeThereWeb.Router do
     get "/search_sessions/:search_session/flights", FlightsController, :get_prices
     get "/search_sessions/:search_session/places", PlacesController, :get_places
     get "/booking_url", FlightsController, :get_booking_url
+    get "/trips", TripsController, :get
+    post "/trips", TripsController, :create
   end
 
   # Enables LiveDashboard only for development

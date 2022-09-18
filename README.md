@@ -308,3 +308,95 @@ A REST API for the TakeMeThere app, written in Elixir and Phoenix
     }
 ]
 ```
+
+### Get User Trips
+
+#### Headers
+`Authorization: {token here}`
+
+*GET* `/api/trips`
+
+#### Response
+```json
+  [
+    {
+        "activities": [
+            "beach",
+            "shopping"
+        ],
+        "adults": 2,
+        "children": 0,
+        "cover_url": "https://lh3.googleusercontent.com/places/AM5lPC9vvloMeGObbGr1ET9y4wpEFo4sIcLDEoWPQYkvU1_0zECWgC_SBCyv42OjnBPGIfGjHLt6hYDPUUa8-AL0Wl3AZkX9ZM7GtQ=s1600-w700",
+        "end_date": "2022-09-15",
+        "hotels": {
+            "items": []
+        },
+        "location": {
+            "country": "Spain",
+            "name": "Barcelona"
+        },
+        "places": {
+            "items": [
+                {
+                    "address": "Platja de la Nova Icària, Spain",
+                    "id": "ChIJz9cDEQ2jpBIRyPyyZbHXCkA",
+                    "image_url": "https://lh3.googleusercontent.com/places/AM5lPC9vvloMeGObbGr1ET9y4wpEFo4sIcLDEoWPQYkvU1_0zECWgC_SBCyv42OjnBPGIfGjHLt6hYDPUUa8-AL0Wl3AZkX9ZM7GtQ=s1600-w700",
+                    "location": {
+                        "lat": 41.3903674,
+                        "lng": 2.2023036
+                    },
+                    "name": "Platja de la Nova Icària",
+                    "rating": 4.4,
+                    "tags": [
+                        "natural_feature",
+                        "establishment"
+                    ]
+                }
+            ]
+        },
+        "start_date": "2022-09-10",
+        "tickets": {
+            "items": []
+        },
+        "title": "5 days in Barcelona, Spain"
+    }
+]
+```
+
+### Create a Trip
+
+#### Headers
+`Authorization: {token here}`
+
+*POST* `/api/trips`
+
+#### Body
+```json
+  {
+    "search_session_id": 1,
+    "tickets": [],
+    "hotels": [],
+    "places": [{
+        "address": "Platja de la Nova Icària, Spain",
+        "id": "ChIJz9cDEQ2jpBIRyPyyZbHXCkA",
+        "image_url": "https://lh3.googleusercontent.com/places/AM5lPC9vvloMeGObbGr1ET9y4wpEFo4sIcLDEoWPQYkvU1_0zECWgC_SBCyv42OjnBPGIfGjHLt6hYDPUUa8-AL0Wl3AZkX9ZM7GtQ=s1600-w700",
+        "location": {
+            "lat": 41.3903674,
+            "lng": 2.2023036
+        },
+        "name": "Platja de la Nova Icària",
+        "rating": 4.4,
+        "tags": [
+            "natural_feature",
+            "establishment"
+        ]
+    }]
+}
+```
+
+#### Response
+```json
+  %{
+    "id" =>
+  }
+```
