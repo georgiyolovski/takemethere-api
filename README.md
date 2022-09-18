@@ -309,6 +309,13 @@ A REST API for the TakeMeThere app, written in Elixir and Phoenix
 ]
 ```
 
+### Get Hotels
+
+#### Headers
+`Authorization: {token here}`
+
+*GET* `/api/search_sessions/1/hotels`
+
 ### Get User Trips
 
 #### Headers
@@ -318,47 +325,46 @@ A REST API for the TakeMeThere app, written in Elixir and Phoenix
 
 #### Response
 ```json
-  [
+[
     {
-        "activities": [
-            "beach",
-            "shopping"
-        ],
-        "adults": 2,
-        "children": 0,
-        "cover_url": "https://lh3.googleusercontent.com/places/AM5lPC9vvloMeGObbGr1ET9y4wpEFo4sIcLDEoWPQYkvU1_0zECWgC_SBCyv42OjnBPGIfGjHLt6hYDPUUa8-AL0Wl3AZkX9ZM7GtQ=s1600-w700",
-        "end_date": "2022-09-15",
-        "hotels": {
-            "items": []
-        },
-        "location": {
-            "country": "Spain",
-            "name": "Barcelona"
-        },
-        "places": {
-            "items": [
-                {
-                    "address": "Platja de la Nova Icària, Spain",
-                    "id": "ChIJz9cDEQ2jpBIRyPyyZbHXCkA",
-                    "image_url": "https://lh3.googleusercontent.com/places/AM5lPC9vvloMeGObbGr1ET9y4wpEFo4sIcLDEoWPQYkvU1_0zECWgC_SBCyv42OjnBPGIfGjHLt6hYDPUUa8-AL0Wl3AZkX9ZM7GtQ=s1600-w700",
-                    "location": {
-                        "lat": 41.3903674,
-                        "lng": 2.2023036
-                    },
-                    "name": "Platja de la Nova Icària",
-                    "rating": 4.4,
-                    "tags": [
-                        "natural_feature",
-                        "establishment"
-                    ]
-                }
-            ]
-        },
-        "start_date": "2022-09-10",
-        "tickets": {
-            "items": []
-        },
-        "title": "5 days in Barcelona, Spain"
+        "address": "Via del Babuino 9,Rome,Italy",
+        "full_price": 4020.0,
+        "id": 393289,
+        "name": "Rocco Forte Hotel De Russie",
+        "picture_url": "https://exp.cdn-hotels.com/hotels/1000000/530000/523800/523751/b4dce361_z.jpg",
+        "rating": 4.6
+    },
+    {
+        "address": "Via Giulia, 62,Rome,Italy",
+        "full_price": 1187.0,
+        "id": 205092,
+        "name": "Hotel Indigo Rome - St. George, an IHG Hotel",
+        "picture_url": "https://exp.cdn-hotels.com/hotels/1000000/890000/890000/889923/46c471fc_z.jpg",
+        "rating": 4.5
+    },
+    {
+        "address": "Via Gerolamo Frescobaldi 5,Rome,Italy",
+        "full_price": 800.0,
+        "id": 148339,
+        "name": "Parco dei Principi Grand Hotel & SPA",
+        "picture_url": "https://exp.cdn-hotels.com/hotels/1000000/460000/457900/457839/5e5a5146_z.jpg",
+        "rating": 4.4
+    },
+    {
+        "address": "Lungotevere Arnaldo da Brescia 2,Rome,Italy",
+        "full_price": 1950.0,
+        "id": 565474,
+        "name": "Palazzo Dama",
+        "picture_url": "https://exp.cdn-hotels.com/hotels/14000000/13190000/13187600/13187549/f5a50c03_z.jpg",
+        "rating": 4.3
+    },
+    {
+        "address": "Via Del Corso 126,Rome,Italy",
+        "full_price": 2103.0,
+        "id": 115730,
+        "name": "Grand Hotel Plaza",
+        "picture_url": "https://exp.cdn-hotels.com/hotels/1000000/50000/45900/45857/211825eb_z.jpg",
+        "rating": 3.5
     }
 ]
 ```
