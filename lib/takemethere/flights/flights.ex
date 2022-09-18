@@ -63,13 +63,48 @@ defmodule TakeMeThere.Flights do
 
     %{"search_params" => %{"sid" => sid}, "summary" => %{"c" => complete}} = session
 
-    %{
-      "carriers" => carriers,
-      "itineraries" => itineraries,
-      "summary" => %{"sh" => hash},
-      "search_params" => %{"sid" => sid}
-    } = poll_session(sid, session, complete)
+    poll_session(sid, session, complete)
+    |> map_search_result()
+  end
 
+  defp build_flights_search_request(origin, destination, date, adults) do
+    params = [
+      o1: origin,
+      d1: destination,
+      dd1: date,
+      currency: "BGN",
+      ta: adults
+    ]
+
+    HTTPoison.get!("#{api_config().url}/create-session", api_config().headers, params: params)
+  end
+
+  defp poll_session(sid, _previous_result, false) do
+    IO.inspect("Polling #{sid} for results")
+    :timer.sleep(1000)
+
+    params = [
+      sid: sid,
+      so: "ML_BEST_VALUE"
+    ]
+
+    %{body: body} =
+      HTTPoison.get!("#{api_config().url}/poll", api_config().headers, params: params)
+
+    parsed = Jason.decode!(body)
+    %{"summary" => %{"c" => complete}} = parsed
+
+    poll_session(sid, parsed, complete)
+  end
+
+  defp poll_session(_sid, previous_result, true), do: previous_result
+
+  defp map_search_result(%{
+    "carriers" => carriers,
+    "itineraries" => itineraries,
+    "summary" => %{"sh" => hash},
+    "search_params" => %{"sid" => sid}
+  }) do
     carrier_map =
       carriers
       |> Map.new(fn %{"c" => key} = carrier -> {key, carrier} end)
@@ -112,37 +147,7 @@ defmodule TakeMeThere.Flights do
     end)
   end
 
-  defp build_flights_search_request(origin, destination, date, adults) do
-    params = [
-      o1: origin,
-      d1: destination,
-      dd1: date,
-      currency: "BGN",
-      ta: adults
-    ]
-
-    HTTPoison.get!("#{api_config().url}/create-session", api_config().headers, params: params)
-  end
-
-  defp poll_session(sid, _previous_result, false) do
-    IO.inspect("Polling #{sid} for results")
-    :timer.sleep(1000)
-
-    params = [
-      sid: sid,
-      so: "ML_BEST_VALUE"
-    ]
-
-    %{body: body} =
-      HTTPoison.get!("#{api_config().url}/poll", api_config().headers, params: params)
-
-    parsed = Jason.decode!(body)
-    %{"summary" => %{"c" => complete}} = parsed
-
-    poll_session(sid, parsed, complete)
-  end
-
-  defp poll_session(_sid, previous_result, true), do: previous_result
+  defp map_search_result(_), do: []
 
   defp api_config() do
     %{
